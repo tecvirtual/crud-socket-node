@@ -17,8 +17,14 @@ app.use(express.static(__dirname + '/public'))
 const server = http.createServer(app)
 const io = new WebSocketServer(server)
 
-io.on('connection', () => {
-    console.log('new conection')
+io.on('connection', (socket) => {
+    console.log('new conection', socket.id)
+
+    socket.emit('ping')
+
+    socket.on('pong', () => {
+        console.log('pong ')
+    })
 })
 
 export default server;
