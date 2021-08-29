@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
     console.log('new conection', socket.id)
 
     socket.on('client:new_note', data => {
+        
         const note = { ...data, id: uuid() }
         console.log(note)
         /* notes.push({
